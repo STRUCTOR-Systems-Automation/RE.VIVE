@@ -1,0 +1,14 @@
+# Temporales y logs
+.DS_Store
+.tmp/
+node_modules/
+*.log
+
+# Entorno
+.env
+.agents/
+.claude/
+
+# Scripts de sistema
+scripts/preparar_despliegue.py
+scripts/setup_git.py
