@@ -336,9 +336,14 @@
       }
     });
 
-    // Clear invalid state on input
+    // Clear invalid state on input / change
     contactForm.querySelectorAll("input, textarea").forEach(field => {
       field.addEventListener("input", () => field.classList.remove("is-invalid"));
+    });
+    contactForm.querySelectorAll("input[type='radio']").forEach(radio => {
+      radio.addEventListener("change", () => {
+        contactForm.querySelectorAll(`[name="${radio.name}"]`).forEach(r => r.classList.remove("is-invalid"));
+      });
     });
   }
 
@@ -546,6 +551,26 @@
     };
     window.addEventListener("scroll", onWaScroll, { passive: true });
     onWaScroll();
+  }
+
+  /* --------------------------
+     Sticky mobile CTA bar
+     -------------------------- */
+  const mobileCta = document.getElementById("mobileCta");
+  if (mobileCta) {
+    const heroEl    = document.getElementById("inicio");
+    const contactEl = document.getElementById("contacto");
+    const updateBar = () => {
+      if (!heroEl || !contactEl) return;
+      const pastHero     = heroEl.getBoundingClientRect().bottom < 0;
+      const nearContact  = contactEl.getBoundingClientRect().top < window.innerHeight * 1.1;
+      const show = pastHero && !nearContact;
+      mobileCta.classList.toggle("is-visible", show);
+      mobileCta.setAttribute("aria-hidden", show ? "false" : "true");
+      document.body.classList.toggle("has-mobile-cta", show);
+    };
+    window.addEventListener("scroll", updateBar, { passive: true });
+    updateBar();
   }
 
   /* --------------------------
