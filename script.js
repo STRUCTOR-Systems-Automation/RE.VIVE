@@ -295,25 +295,25 @@
       try {
         const formData = new FormData(contactForm);
         const payload = {
-          nombre: (formData.get("nombre") || "").trim(),
-          email: (formData.get("email") || "").trim(),
-          ubicacion: (formData.get("ubicacion") || "").trim(),
-          edad: parseInt(formData.get("edad"), 10) || 0,
-          objetivo: (formData.get("objetivo") || "").trim(),
-          experiencia: formData.get("experiencia") || "",
+          nombre:       (formData.get("nombre") || "").trim(),
+          email:        (formData.get("email") || "").trim(),
+          ubicacion:    (formData.get("ubicacion") || "").trim(),
+          edad:         parseInt(formData.get("edad"), 10) || 0,
+          objetivo:     (formData.get("objetivo") || "").trim(),
+          experiencia:  formData.get("experiencia") || "",
           expectativas: (formData.get("expectativas") || "").trim(),
-          whatsapp: (formData.get("whatsapp") || "").trim(),
-          fecha_entrada: new Date().toISOString(),
-          estado_lead: "Nuevo lead",
-          origen: "Formulario web"
+          whatsapp:     (formData.get("whatsapp") || "").trim(),
+          // Honeypot: se incluye para que el servidor pueda rechazar bots
+          website:      (formData.get("website") || "").trim(),
         };
 
+        // La URL es relativa (/api/contact) — nunca exponemos el webhook real
         const res = await fetch(contactForm.action, {
           method: "POST",
           body: JSON.stringify(payload),
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json" 
+            "Accept":       "application/json",
           },
         });
         if (res.ok) {
@@ -332,7 +332,7 @@
       } catch {
         formSubmit.disabled = false;
         btnLabel.textContent = "Enviar solicitud";
-        alert("Hubo un problema al enviar. Escríbeme a valeriagymcontact@gmail.com");
+        alert("Hubo un problema al enviar. Por favor, inténtalo de nuevo en unos minutos.");
       }
     });
 

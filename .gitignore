@@ -4,8 +4,10 @@
 node_modules/
 *.log
 
-# Entorno
+# Entorno (nunca subir secrets a git)
 .env
+.env.local
+.env.*.local
 .agents/
 .claude/
 

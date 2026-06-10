@@ -1090,10 +1090,8 @@
     </div>
 
     <div class="contacto__form-wrap reveal" data-delay="200">
-      <!-- Conecta con Formspree: crea una cuenta en https://formspree.io,
-           crea un form y reemplaza FORMSPREE_ID con tu ID (ej. xyzabcde) -->
       <form class="contacto__form" id="contactForm"
-            action="https://structor-systems-automation-n8n.45kxje.easypanel.host/webhook-test/RE·VIVE" method="POST" novalidate>
+            action="/api/contact" method="POST" novalidate>
 
         <div class="form-row">
           <div class="form-group">
@@ -1149,6 +1147,12 @@
             <span class="form-hint">(incluye el prefijo de tu país)</span>
           </label>
           <input type="tel" id="f-whatsapp" name="whatsapp" required placeholder="+34 600 000 000" />
+        </div>
+
+        <!-- Honeypot: campo oculto para detectar bots (los humanos no lo ven ni lo rellenan) -->
+        <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
+          <label for="f-website">Website</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
         <button type="submit" class="btn btn--primary btn--block btn--lg breathe" id="formSubmit">
