@@ -1138,19 +1138,12 @@ em {
 @media (max-width: 980px) {
   .sobre { padding: 50px 0; }
   .sobre__inner { grid-template-columns: 1fr; gap: 50px; }
-  .sobre__visual { width: 100%; max-width: 440px; margin: 0 auto; justify-self: center; aspect-ratio: auto; height: auto; }
+  .sobre__visual { width: 100%; max-width: 440px; margin: 0 auto; justify-self: center; }
   .sobre__copy .btn { transform: none; margin-top: 10px; }
-  /* La foto mantiene su proporción aunque el chip ya no vaya superpuesto */
-  .sobre__photo-wrap { aspect-ratio: 4 / 5; height: auto; }
-  /* Chip: debajo de la foto a todo el ancho, para no tapar el rostro */
-  .sobre__chip {
-    position: static;
-    left: auto;
-    top: auto;
-    max-width: none;
-    width: 100%;
-    margin-top: 16px;
-  }
+  /* Chip: de vuelta a la esquina superior izquierda, pero más estrecho
+     (ancho relativo) para no invadir la zona del rostro de la foto */
+  .sobre__chip { left: 14px; top: 14px; max-width: none; width: 34%; }
+  .sobre__chip p { overflow-wrap: break-word; }
   /* Signature: no overflow a la derecha */
   .sobre__signature { right: 12px; bottom: -24px; }
 }
@@ -2234,6 +2227,21 @@ em {
 }
 @media (max-width: 540px) {
   .footer__nav { grid-template-columns: 1fr 1fr; }
+}
+
+/* =====================================================
+   RITMO VERTICAL MOBILE — espaciado simétrico entre secciones
+   ===================================================== */
+@media (max-width: 768px) {
+  .manifiesto { margin: 56px 0; }
+  .proceso { padding: 56px 0; }
+  .sobre { padding: 56px 0; }
+  .metodo { padding: 56px 0; }
+  .planes { padding: 56px 0; }
+  .testimonios { padding: 56px 0; }
+  .faq { padding: 56px 0; }
+  .contacto { padding: 56px 0; }
+  .footer { padding: 56px 0 30px; }
 }
 
 /* =====================================================
