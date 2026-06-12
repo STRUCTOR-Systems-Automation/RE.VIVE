@@ -434,10 +434,15 @@ em {
   display: flex;
   align-items: center;
   gap: 22px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .hero__trust li:not(.divider) {
   display: flex; flex-direction: column; gap: 2px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.hero__trust li:not(.divider):last-child {
+  flex-shrink: 1;
 }
 .hero__trust strong {
   font-family: var(--serif);
