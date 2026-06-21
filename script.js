@@ -562,21 +562,24 @@
      -------------------------- */
   const mobileCta = document.getElementById("mobileCta");
   if (mobileCta) {
-    const heroEl    = document.getElementById("inicio");
-    const heroCtas  = heroEl ? heroEl.querySelector(".hero__ctas") : null;
+    const heroCtas  = document.querySelector(".hero__ctas");
     const contactEl = document.getElementById("contacto");
-    const updateBar = () => {
-      if (!heroEl || !contactEl) return;
-      const ctaAnchor    = heroCtas || heroEl;
-      const pastHero     = ctaAnchor.getBoundingClientRect().bottom < 0;
-      const nearContact  = contactEl.getBoundingClientRect().top < window.innerHeight * 1.1;
-      const show = pastHero && !nearContact;
+    let heroPast    = false;
+    let contactNear = false;
+    const setBar = () => {
+      const show = heroPast && !contactNear;
       mobileCta.classList.toggle("is-visible", show);
       mobileCta.setAttribute("aria-hidden", show ? "false" : "true");
       document.body.classList.toggle("has-mobile-cta", show);
     };
-    window.addEventListener("scroll", updateBar, { passive: true });
-    updateBar();
+    if (heroCtas) {
+      new IntersectionObserver(([e]) => { heroPast = !e.isIntersecting; setBar(); }, { threshold: 0 })
+        .observe(heroCtas);
+    }
+    if (contactEl) {
+      new IntersectionObserver(([e]) => { contactNear = e.isIntersecting; setBar(); }, { rootMargin: "0px 0px -10% 0px", threshold: 0 })
+        .observe(contactEl);
+    }
   }
 
   /* --------------------------
