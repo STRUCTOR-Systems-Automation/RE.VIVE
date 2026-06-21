@@ -559,6 +559,7 @@
 
     waBubble.addEventListener("click", (e) => {
       e.preventDefault();
+      if (typeof fbq === "function") fbq("trackCustom", "WhatsAppChat");
       const url = "https://api.whatsapp.com/send?phone=" + WA_PHONE +
                   "&text=" + encodeURIComponent(WA_TEXT);
       window.open(url, "_blank", "noopener,noreferrer");
