@@ -317,6 +317,10 @@
           },
         });
         if (res.ok) {
+          if (typeof fbq === "function") {
+            fbq("track", "Lead");
+            fbq("track", "Contact");
+          }
           btnLabel.textContent = "¡Enviado!";
           setTimeout(() => {
             contactForm.hidden = true;
