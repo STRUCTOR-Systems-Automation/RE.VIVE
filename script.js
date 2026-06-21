@@ -127,6 +127,22 @@
   onScroll();
 
   /* --------------------------
+     Mobile CTA scroll — land on the form, not the section heading
+     -------------------------- */
+  const formWrap = document.getElementById("contacto-form");
+  if (formWrap) {
+    document.querySelectorAll('[href="#contacto"]').forEach(link => {
+      link.addEventListener("click", e => {
+        if (window.innerWidth > 768) return;
+        e.preventDefault();
+        const navHeight = document.getElementById("nav")?.offsetHeight ?? 64;
+        const top = formWrap.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+        window.scrollTo({ top, behavior: "smooth" });
+      });
+    });
+  }
+
+  /* --------------------------
      Mobile menu
      -------------------------- */
   const burger = document.getElementById("burger");

@@ -2137,6 +2137,7 @@ em {
   .contacto__inner { grid-template-columns: 1fr; gap: 48px; }
   .contacto__copy { padding-top: 0; text-align: center; }
   .contacto__trust { align-items: center; }
+  #contacto-form { scroll-margin-top: 80px; }
 }
 @media (max-width: 600px) {
   .contacto { padding: 64px 0 80px; }
