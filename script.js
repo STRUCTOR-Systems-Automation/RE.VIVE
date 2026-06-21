@@ -563,10 +563,12 @@
   const mobileCta = document.getElementById("mobileCta");
   if (mobileCta) {
     const heroEl    = document.getElementById("inicio");
+    const heroCtas  = heroEl ? heroEl.querySelector(".hero__ctas") : null;
     const contactEl = document.getElementById("contacto");
     const updateBar = () => {
       if (!heroEl || !contactEl) return;
-      const pastHero     = heroEl.getBoundingClientRect().bottom < 0;
+      const ctaAnchor    = heroCtas || heroEl;
+      const pastHero     = ctaAnchor.getBoundingClientRect().bottom < 0;
       const nearContact  = contactEl.getBoundingClientRect().top < window.innerHeight * 1.1;
       const show = pastHero && !nearContact;
       mobileCta.classList.toggle("is-visible", show);
