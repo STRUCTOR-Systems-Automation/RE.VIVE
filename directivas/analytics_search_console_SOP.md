@@ -64,6 +64,13 @@ Estas cookies están documentadas en `cookies.html` (sección 3). Si cambia el M
 | Vinculación con Search Console | Activa desde 21 jun 2026 |
 | IPs anonimizadas | Sí (comportamiento por defecto en GA4) |
 
+### Eventos personalizados configurados
+
+| Evento | Cuándo se dispara | Cómo está implementado |
+|---|---|---|
+| `generate_lead` | Al enviar el formulario de contacto con éxito | `gtag('event', 'generate_lead', ...)` en `script.js` |
+| `contact` | Al hacer clic en el botón de WhatsApp | `gtag('event', 'contact', { method: 'WhatsApp' })` en `script.js` |
+
 ---
 
 ## 5. Configuración de Search Console

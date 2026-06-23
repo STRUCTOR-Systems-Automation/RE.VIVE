@@ -360,6 +360,12 @@
             fbq("track", "Lead");
             fbq("track", "Contact");
           }
+          if (typeof gtag === "function") {
+            gtag("event", "generate_lead", {
+              event_category: "engagement",
+              event_label: "Formulario de Contacto"
+            });
+          }
           btnLabel.textContent = "¡Enviado!";
           setTimeout(() => {
             contactForm.hidden = true;
@@ -583,6 +589,11 @@
     waBubble.addEventListener("click", (e) => {
       e.preventDefault();
       if (typeof fbq === "function") fbq("trackCustom", "WhatsAppChat");
+      if (typeof gtag === "function") {
+        gtag("event", "contact", {
+          method: "WhatsApp"
+        });
+      }
       const url = "https://api.whatsapp.com/send?phone=" + WA_PHONE +
                   "&text=" + encodeURIComponent(WA_TEXT);
       window.open(url, "_blank", "noopener,noreferrer");
